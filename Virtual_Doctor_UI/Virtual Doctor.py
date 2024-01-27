@@ -13,3 +13,14 @@ virtual_doctor = gr.Interface(
 )
 
 virtual_doctor.launch()
+
+def check_symptoms(symptoms):
+    return f"Received symptoms: {symptoms}"
+
+symptom_checker = gr.Interface(
+    fn=check_symptoms,
+    inputs=gr.inputs.Textbox(lines=2, placeholder="Enter your symptoms here..."),
+    outputs="text",
+)
+
+symptom_checker.launch(share=True)
