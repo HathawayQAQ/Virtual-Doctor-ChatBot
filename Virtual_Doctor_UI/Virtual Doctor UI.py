@@ -1,26 +1,29 @@
+import openai
 import gradio as gr
 
-def answer(question):
-    #we need to pass the user input to the openai here but i don't know how
-    #this should return the answer from chatgpt
-    return input('Ask Virtual Doctor for any health concerns!')
-    
+openai.api_key = "sk-..."  # Replace with your key
 
-virtual_doctor = gr.Interface(
-    fn=answer,
-    inputs=["text"],
-    outputs=["text"],
-)
+def predict(message, history):
+    history_openai_format = []
+    for human, ai in history:
+        history_openai_format.append({"role": "user", "content": human })
+        history_openai_format.append({"role": "ai", "content":ai})
+    history_openai_format.append({"role": "user", "content": message})
 
-virtual_doctor.launch()
+    response = openai.ChatCompletion.create(
+        model='gpt-4.0-turbo', # need change if applicable
+        messages= history_openai_format,
+        temperature=1.0,
+        stream=True
+    )
 
-def check_symptoms(symptoms):
-    return f"Received symptoms: {symptoms}"
+    partial_message = ""
+    for chunk in response:
+        if len(chunk['choices'][0]['delta']) != 0:
+            partial_message = partial_message + chunk['choices'][0]['delta']['content']
+            yield partial_message
 
-symptom_checker = gr.Interface(
-    fn=check_symptoms,
-    inputs=gr.inputs.Textbox(lines=2, placeholder="Enter your symptoms here..."),
-    outputs="text",
-)
-
-symptom_checker.launch(share=True)
+gr.ChatInterface(predict,
+                 title = 'Virtual Doctor',
+                 description='you can ask our virtual doctor for any symptoms you have, \
+                     with some emergent situation, please contact 911 immediately.').launch()
