@@ -48,7 +48,7 @@ def chat_with_doctor(message):
 
 chat_system = gr.Interface(
     fn=chat_with_doctor,
-    inputs=gr.inputs.Textbox(lines=3, placeholder="Type your message here..."),
+    inputs=gr.inputs.Textbox(lines=3, placeholder="Hi I'm there to help you. What kind of symptoms do you have?"),
     outputs="text",
 )
 
