@@ -28,3 +28,29 @@ symptom_checker = gr.Interface(
 )
 
 symptom_checker.launch(share=True)
+
+def book_appointment(date, time):
+    return f"Appointment booked for {date} at {time}"
+
+appointment_booker = gr.Interface(
+    fn=book_appointment,
+    inputs=[
+        gr.inputs.Textbox(placeholder="Enter date (e.g., 2024-01-27)"),
+        gr.inputs.Textbox(placeholder="Enter time (e.g., 13:00)")
+    ],
+    outputs="text",
+)
+
+appointment_booker.launch(share=True)
+
+def chat_with_doctor(message):
+    return f"Doctor: {message}"
+
+chat_system = gr.Interface(
+    fn=chat_with_doctor,
+    inputs=gr.inputs.Textbox(lines=3, placeholder="Type your message here..."),
+    outputs="text",
+)
+
+chat_system.launch(share=True)
+
