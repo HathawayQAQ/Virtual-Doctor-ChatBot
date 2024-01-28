@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the "Virtual Doctor" project, where the medical advice is as unpredictable as it is unnerving. This project is the brainchild of a team of first-time hackathon participants, united by a love for humor, chaos, and the avant-garde. Leveraging the power of OpenAI's GPT API and the cutting-edge Langchain library, we've concocted a devilish doctor, a purveyor of pandemonium, who doles out the most chaotic medical ideas known (and unknown) to mankind.
+Welcome to the "Virtual Doctor" project, where the medical advice is as unpredictable as it is unnerving. This project is the brainchild of a team of **first-time** hackathon participants, united by a love for humor, chaos, and the avant-garde. Leveraging the power of OpenAI API and the cutting-edge Langchain library, we've concocted a devilish doctor, a purveyor of pandemonium, who doles out the most chaotic medical ideas known (and unknown) to mankind.
 
 ## Features
 
